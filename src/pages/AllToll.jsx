@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import store from "store";
+import AddTollModel from "../components/AddTollModel";
+import AddVehicleModel from "../components/AddVehicleModel";
 import "../css/table.css";
 
 const AllToll = () => {
   const allTolls = store.get("allTolls");
-  console.log("allTolls", allTolls);
+  const [open, setOpen] = useState(false);
+  const [vehicleModel, setVehicleModel] = useState(false);
+
+  const navigate = useNavigate();
   return (
-    <div>
-      <h1>Toll List</h1>
+    <>
+      <h1 style={{ color: "black" }}>Toll List</h1>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: " row-reverse",
+          gap: "10px",
+          marginRight: "30%",
+          marginBottom: " 15px",
+        }}
+      >
+        <button className="btnCss" onClick={() => setOpen(true)}>
+          Add Toll
+        </button>
+        <button className="btnCss" onClick={() => navigate("/")}>
+          View All Vehicles
+        </button>
+        <button className="btnCss" onClick={() => setVehicleModel(true)}>
+          Add Vehicle Details
+        </button>
+      </div>
       <div class="container">
         <table class="rwd-table">
           <tbody>
@@ -43,7 +68,9 @@ const AllToll = () => {
           </tbody>
         </table>
       </div>
-    </div>
+      <AddTollModel open={open} setOpen={setOpen} />
+      <AddVehicleModel open={vehicleModel} setOpen={setVehicleModel} />
+    </>
   );
 };
 

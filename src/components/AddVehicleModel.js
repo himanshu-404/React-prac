@@ -13,9 +13,7 @@ const AddVehicleModel = ({ open, setOpen }) => {
 
     if (!checkNumber) {
       alert("Enter Valid Vehicle Number ");
-    }
-
-    if (vehicleData == undefined) {
+    } else if (vehicleData == undefined) {
       store.set("vehicles", [{ ...details, date: new Date() }]);
       alert("Vehicle Added Succsessfully");
       setOpen(false);
@@ -55,15 +53,16 @@ const AddVehicleModel = ({ open, setOpen }) => {
       return x.name === details.toll;
     });
 
-    let vehicle = vehicleData.filter((x) => {
+    let vehicle = vehicleData?.filter((x) => {
       return (
         x.vehicleNumber === details.vehicleNumber && x.toll === details.toll
       );
     });
 
     if (
+      vehicle !== undefined &&
       vehicle?.length % 2 !== 0 &&
-      vehicle[vehicle.length - 1].toll === details.toll
+      vehicle[vehicle?.length - 1].toll === details.toll
     ) {
       const hours = diff_hours(new Date(), vehicle[vehicle.length - 1]?.date);
       if (hours < 1) {

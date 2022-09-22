@@ -15,9 +15,25 @@ const Home = () => {
   return (
     <>
       <h2>Toll Managmnet Application</h2>
-      <button onClick={() => setOpen(true)}>add TOll</button>
-      <button onClick={() => navigate("allTolls")}>view toll</button>
-      <button onClick={() => setVehicleModel(true)}>Add Vehicle</button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: " row-reverse",
+          gap: "10px",
+          marginRight: "30%",
+          marginBottom: " 15px",
+        }}
+      >
+        <button className="btnCss" onClick={() => setOpen(true)}>
+          Add Toll
+        </button>
+        <button className="btnCss" onClick={() => navigate("allTolls")}>
+          View All Tolls
+        </button>
+        <button className="btnCss" onClick={() => setVehicleModel(true)}>
+          Add Vehicle Details
+        </button>
+      </div>
       <div class="tblcontainer">
         <table class="rwd-table">
           <tbody>
